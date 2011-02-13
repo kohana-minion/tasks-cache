@@ -20,7 +20,7 @@ class Minion_Task_Cache_Purge extends Minion_Task
 	/**
 	 * An array of config options that this task can accept
 	 */
-	protected $_config = array();
+	protected $_config = array('cache');
 
 	/**
 	 * Clears the cache
@@ -29,7 +29,7 @@ class Minion_Task_Cache_Purge extends Minion_Task
 	{
 		if (empty($config['cache']))
 		{
-			return 'Please specify a set of cache configs.';
+			return Minion_CLI::write('Please specify a set of cache configs.', 'red');
 		}
 
 		$config['cache'] = trim($config['cache'], ',');
@@ -42,6 +42,6 @@ class Minion_Task_Cache_Purge extends Minion_Task
 				->delete_all();
 		}
 
-		return 'Cleared caches for '.$config['cache'];
+		return Minion_CLI::write('Cleared caches for '.$config['cache'], 'green');
 	}
 }
