@@ -29,7 +29,7 @@ class Minion_Task_Cache_Purge extends Minion_Task
 	{
 		if (empty($config['cache']))
 		{
-			return Minion_CLI::write('Please specify a set of cache configs.', 'red');
+			$config['cache'] = Cache::$default;
 		}
 
 		$config['cache'] = trim($config['cache'], ',');
